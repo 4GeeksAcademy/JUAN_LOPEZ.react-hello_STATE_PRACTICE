@@ -10,3 +10,8 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+.cart-fab {
+    position: fixed;
+    bottom: 5vh;
+    width: 100%;
+}
