@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import listaProductos from "../listaProductos";
 import Card from "./Card";
-
+import ShopCart from "./ShopCart";
+import { element } from "prop-types";
 const Products = () => {
   const [shoppingCart, setShoppingCart] = useState([]);
   const handleNewProduct = (producto) => {
@@ -10,14 +11,13 @@ const Products = () => {
     }
     const newCart = [...shoppingCart, producto];
     setShoppingCart(newCart);
-    console.log(shoppingCart);
+  };
+  const productRemove = (product) => {
+    const newCart = shoppingCart.filter((element) => element.id !== product.id);
+    setShoppingCart(newCart);
   };
   return (
     <>
-      <div>
-        <p>Carrito {shoppingCart.length}</p>
-      </div>
-
       <div className="row gap-5">
         {listaProductos.map((producto) => {
           return (
@@ -34,13 +34,7 @@ const Products = () => {
           );
         })}
       </div>
-      <div className="cart-fab">
-        <div className="container d-flex justify-content-end">
-          <button className="btn btn-warning">
-            <span>Modal</span>
-          </button>
-        </div>
-      </div>
+      <ShopCart shoppingCart={shoppingCart} productRemove={productRemove} />
     </>
   );
 };
